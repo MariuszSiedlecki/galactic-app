@@ -1,0 +1,49 @@
+<div class="container" xmlns:th="http://www.thymeleaf.org" th:fragment="user_table">
+    <div class="row">
+        <div class="col-sm">
+            <table class="table table-bordered" style="color: white; background-color: black; opacity: 0.5">
+                <tr class="active">
+                    <th>Planet name</th>
+                    <th>Distance from Sun</th>
+                    <th>One Way Light time</th>
+                    <th>Length of year</th>
+                    <th>Planet type</th>
+                    <th>Planet image</th>
+                    <th>Planet info</th>
+                    <th>Planet #tags</th>
+                </tr>
+                <!--todo zapoznac sie z formantami thymeleaf, uzupelnic tabele o dane-->
+                <tr th:each="p : ${planets}">
+                    <td th:text="${p.getPlanetName()}"></td>
+                    <td th:text="${#numbers.formatInteger(p.getDistanceFromSun(), 1, 'COMMA')}"></td>
+                    <td th:text="${#numbers.formatDecimal(p.getOneWayLightTimeToTheSun(), 1,2, 'POINT')} + s"></td>
+                    <td th:text="${#numbers.formatInteger(p.getLengthOfYear(), 1, 'COMMA')}"></td>
+                    <td th:text="${p.getPlanetType()}"></td>
+                    <td><img th:src="@{${p.getPlanetImage()}}" alt="image" style="height: auto" width="80%"></td>
+                    <td th:text="${p.getPlanetInfo()}"></td>
+                    <td>
+                        <ul>
+                            <li th:each="t : ${p.getTags()}">
+                                <span class="badge badge-secondary" style="cursor: pointer" th:text="${t}"></span>
+                            </li>
+                        </ul>
+                    </td>
+                    <td>
+                        <form action="/update" method="post">
+                            <input type="hidden" th:value="${p.getPlanetName()}" name="planet">
+                            <button disabled type="submit" class="btn btn-success btn-sm"><i
+                                    class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                        </form>
+                    </td>
+                    <td>
+                        <form action="/delete" method="get">
+                            <input type="hidden" th:value="${p.getPlanetName()}" name="planet">
+                            <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-trash"
+                                                                                   aria-hidden="true"></i></button>
+                        </form>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
