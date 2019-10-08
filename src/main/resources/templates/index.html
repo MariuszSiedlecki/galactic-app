@@ -1,11 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+<!DOCTYPE html >
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="document/head ::head_section"></head>
+
 <body>
-     <span><a href="swagger-ui.html">swagger documentation</a> | <a href="/">home</a> </span>
+
+<span><a href="swagger-ui.html" ><i style="font-size:24px" class="fa">&#xf0f2;</i> Swagger documentation</a>
+    | <a href="/"><i style="font-size:24px" class="fa">&#xf015;</i> Home</a>
+    | <a href="/add-page"><i class="fa fa-plus-square" aria-hidden="true" ></i> Add Planet</a>
+    | <a href="/logout"><i style="font-size:24px" class="fa">&#xf08b;</i> Log out</a>
+    | <a href="/file/xls"><i style="font-size:24px" class="fa">&#xf08b;</i> Get planets XLS</a>
+    | <a href="/api/v1/planets/download/file/xls/planets.xls"><i style="font-size:24px" class="fa">&#xf08b;</i> Get planets file</a>
+
+
+</span>
+    <div th:replace="document/content :: content_section_title"></div>
+    <div th:replace="document/tables/user_table :: user_table"></div>
+
 </body>
 </html>
 
