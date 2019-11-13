@@ -12,7 +12,7 @@
                     <th>Planet info</th>
                     <th>Planet #tags</th>
                 </tr>
-                <!--todo zapoznac sie z formantami thymeleaf, uzupelnic tabele o dane-->
+                <!-- uzupelnic tabele o dane-->
                 <tr th:each="p : ${planets}">
                     <td th:text="${p.getPlanetName()}"></td>
                     <td th:text="${#numbers.formatInteger(p.getDistanceFromSun(), 1, 'COMMA')}"></td>
